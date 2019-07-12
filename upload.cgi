@@ -52,8 +52,9 @@ def save_uploaded_file():
     uploaded_file_path = os.path.join(UPLOAD_DIR, os.path.basename(form_file.filename))
 
     #doublecheck to be really in the right path
-    if os.path.realpath(uploaded_file_path) != os.path.realpath(UPLOAD_DIR) or len(form_file.filename) > 300:
+    if os.path.dirname(uploaded_file_path) != UPLOAD_DIR or len(form_file.filename) > 300:
         print('<h1>Invalid filename</h1>')
+        return
         
     with open(uploaded_file_path, 'wb') as fout:
         while True:
